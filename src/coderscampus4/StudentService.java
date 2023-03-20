@@ -8,19 +8,28 @@ import java.util.Arrays;
 public class StudentService {
 	
 	public static void writeStudents(Student[] studentList) throws IOException {
+		Student[] apmthStudents = new Student[33];
 		Student[] compSciStudents = new Student[34];
 		Student[] statStudents = new Student[33];
-		Student[] apmthStudents = new Student[33];
+		
 	
-		try (BufferedWriter compSciWriter = new BufferedWriter(new FileWriter("course1.csv"));
-			  BufferedWriter statWriter = new BufferedWriter(new FileWriter("course2.csv"));
-			  BufferedWriter apmthWriter = new BufferedWriter(new FileWriter("course3.csv"))) {
+		try (BufferedWriter apmthWriter = new BufferedWriter(new FileWriter("course3.csv"));
+			 BufferedWriter compSciWriter = new BufferedWriter(new FileWriter("course1.csv"));
+			 BufferedWriter statWriter = new BufferedWriter(new FileWriter("course2.csv"))) {
 				
+			
+			int apmth = 0;
 			int compSci = 0;
 			int stat = 0;
-			int apmth = 0;
+			
 				
 			for (Student student : studentList) {
+				
+				if (student.getCourse().contains("APMTH")) {
+					   apmthStudents[apmth] = student;
+					   apmth++;
+				}
+				
 			   if (student.getCourse().contains("COMPSCI")) {
 				   compSciStudents[compSci] = student;
 				   compSci++;
@@ -29,11 +38,15 @@ public class StudentService {
 				   statStudents[stat] = student;
 				   stat++;
 			   }
-			   if (student.getCourse().contains("APMTH")) {
-				   apmthStudents[apmth] = student;
-				   apmth++;
-			   }
+			   
+			   
 			}
+			Arrays.sort(apmthStudents);
+			apmthWriter.write("StudentID, Student Name, Course, Grade \n");
+			for (Student student : apmthStudents) {
+				apmthWriter.write(student.getStudentID() + "," + student.getStudentName() + "," + student.getCourse() + "," + student.getGrade() + "\n");
+			}
+			
 			Arrays.sort(compSciStudents);
 			compSciWriter.write("StudentID, Student Name, Course, Grade \n");
 			for (Student student : compSciStudents) {
@@ -44,13 +57,10 @@ public class StudentService {
 			for (Student student : statStudents) {
 				statWriter.write(student.getStudentID() + "," + student.getStudentName() + "," + student.getCourse() + "," + student.getGrade() + "\n");
 			}
-			Arrays.sort(apmthStudents);
-			apmthWriter.write("StudentID, Student Name, Course, Grade \n");
-			for (Student student : apmthStudents) {
-				apmthWriter.write(student.getStudentID() + "," + student.getStudentName() + "," + student.getCourse() + "," + student.getGrade() + "\n");
+			
 			}
 		
 	}
 
 }
-}
+
