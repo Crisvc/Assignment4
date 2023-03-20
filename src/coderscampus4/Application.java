@@ -7,9 +7,10 @@ public class Application {
 
 	public static void main(String[] args) throws IOException {
 		
-		FileService fileSerice = new FileService ();
-		Student[] masterList = FileService.readStudents("student-master-list.csv");
+		FileService fileService = new FileService();
+		Student[] masterList = fileService.readStudents("/Users/cristianvazquezcalderon/Desktop/student-master-list.csv");
 		StudentService.writeStudents(masterList);
+
 	}
 
 }
