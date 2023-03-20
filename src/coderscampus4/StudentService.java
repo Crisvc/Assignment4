@@ -13,9 +13,9 @@ public class StudentService {
 		Student[] statStudents = new Student[33];
 		
 	
-		try (BufferedWriter apmthWriter = new BufferedWriter(new FileWriter("course3.csv"));
-			 BufferedWriter compSciWriter = new BufferedWriter(new FileWriter("course1.csv"));
-			 BufferedWriter statWriter = new BufferedWriter(new FileWriter("course2.csv"))) {
+		try (BufferedWriter apmthWriter = new BufferedWriter(new FileWriter("course1.csv"));
+			 BufferedWriter compSciWriter = new BufferedWriter(new FileWriter("course2.csv"));
+			 BufferedWriter statWriter = new BufferedWriter(new FileWriter("course3.csv"))) {
 				
 			
 			int apmth = 0;
